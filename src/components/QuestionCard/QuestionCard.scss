@@ -1,0 +1,9 @@
+.question-card {
+  display: flex;
+  justify-content: space-between;
+
+  &__info {
+    flex: 1 0 auto;
+    margin-left: 1rem;
+  }
+}
