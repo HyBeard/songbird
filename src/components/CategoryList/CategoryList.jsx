@@ -2,9 +2,9 @@ import React from 'react';
 
 import cn from '../../utils/bemNaming';
 
-const CategoryList = ({ categories, currentCategory }) => {
+const CategoryList = ({ mixinClass, categories, currentCategory }) => {
   return (
-    <ul className="category-list">
+    <ul className={`category-list ${mixinClass}`}>
       {categories.map((title) => {
         const categoryClass = cn(
           'category-list',
