@@ -1,3 +1,30 @@
-* {
-  color: red;
+.quiz {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem;
+  grid-template-areas:
+    'category-list category-list'
+    'question-card question-card'
+    'answers-list answer-card'
+    'next-btn next-btn';
+
+  &__category-list {
+    grid-area: category-list;
+  }
+
+  &__question-card {
+    grid-area: question-card;
+  }
+
+  &__answers-list {
+    grid-area: answers-list;
+  }
+
+  &__answer-card {
+    grid-area: answer-card;
+  }
+
+  &__next-btn {
+    grid-area: next-btn;
+  }
 }
