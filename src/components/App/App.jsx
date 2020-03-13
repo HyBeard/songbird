@@ -66,26 +66,69 @@ class App extends Component {
     });
   };
 
+  goToNextLevel = () => {
+    this.setState(({ currentStep, categories }) => {
+      if (currentStep === categories.length - 1) {
+        return { theEnd: true };
+      }
 
-  return (
-    <div className="wrap">
-      <Header />
-      <main className="quiz">
-        <CategoryList
-          mixinClass="quiz__category-list"
-          categories={categories}
-          currentCategory="Воробьиные"
-        />
-        <QuestionCard mixinClass="quiz__question-card" />
-        <AnswersList
-          mixinClass="quiz__answers-list"
-          answerChoices={answerChoices}
-        />
-        <AnswerCard mixinClass="quiz__answer-card" data={example} />
-        <NextLvlBtn mixinClass="quiz__next-btn" />
-      </main>
-    </div>
-  );
-};
+      const nextStep = currentStep + 1;
+      const birdsOfCurrentCategory = birdsData[nextStep].categoryData;
+      const questionBird = App.takeRandomBird(birdsOfCurrentCategory);
+
+      return {
+        currentStep: nextStep,
+        birdsOfCurrentCategory,
+        questionBird,
+        chosenBird: null,
+        rightAnswerWasGiven: false,
+      };
+    });
+  };
+
+  render() {
+    const {
+      score,
+      categories,
+      currentStep,
+      birdsOfCurrentCategory,
+      questionBird,
+      chosenBird,
+      rightAnswerWasGiven,
+      theEnd,
+    } = this.state;
+
+    return (
+      <div className="wrap">
+        <Header score={score} />
+        <main className="quiz">
+          <CategoryList
+            mixinClass="quiz__category-list"
+            categories={categories}
+            currentStep={currentStep}
+          />
+          <QuestionCard
+            mixinClass="quiz__question-card"
+            questionData={questionBird}
+            rightAnswerWasGiven={rightAnswerWasGiven}
+          />
+          <AnswersList
+            mixinClass="quiz__answers-list"
+            answerChoicesData={birdsOfCurrentCategory}
+            rightAnswerId={questionBird.id}
+            rightAnswerWasGiven={rightAnswerWasGiven}
+            onAnswerChoice={this.handleAnswerChoice}
+          />
+          <AnswerCard mixinClass="quiz__answer-card" data={chosenBird} />
+          <NextLvlBtn
+            mixinClass="quiz__next-btn"
+            rightAnswerWasGiven={rightAnswerWasGiven}
+            onLevelChange={this.goToNextLevel}
+          />
+        </main>
+      </div>
+    );
+  }
+}
 
 export default App;
