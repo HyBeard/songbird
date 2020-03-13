@@ -1,9 +1,10 @@
 import React from 'react';
+
 import { ReactComponent as LogoIcon } from './bird.svg';
 
-const Logo = ({ className }) => {
+const Logo = ({ mixinClass }) => {
   return (
-    <div className={className}>
+    <div className={mixinClass}>
       <LogoIcon className="logo" />
     </div>
   );

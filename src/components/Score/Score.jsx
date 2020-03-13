@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Score = ({ className, currentScore = 0 }) => {
+const Score = ({ mixinClass, score }) => {
   return (
-    <div className={className}>
-      <h5 className="score"> Score: {currentScore}</h5>
+    <div className={mixinClass}>
+      <h5 className="score"> Score: {score}</h5>
     </div>
   );
 };

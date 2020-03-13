@@ -3,11 +3,11 @@ import React from 'react';
 import Logo from '../Logo';
 import Score from '../Score';
 
-const Header = () => {
+const Header = ({ score }) => {
   return (
     <header className="header">
-      <Logo className="header__logo" />
-      <Score className="header__score" />
+      <Logo mixinClass="header__logo" />
+      <Score mixinClass="header__score" score={score} />
     </header>
   );
 };
