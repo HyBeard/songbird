@@ -1,6 +1,7 @@
 const birdsData = [
   {
-    category: 'Разминка',
+    categoryTitle: 'Разминка',
+    categoryId: 1,
     categoryData: [
       {
         id: 1,
@@ -68,7 +69,8 @@ const birdsData = [
     ],
   },
   {
-    category: 'Воробьиные',
+    categoryTitle: 'Воробьиные',
+    categoryId: 2,
     categoryData: [
       {
         id: 1,
@@ -138,7 +140,8 @@ const birdsData = [
     ],
   },
   {
-    category: 'Лесные птицы',
+    categoryTitle: 'Лесные птицы',
+    categoryId: 3,
     categoryData: [
       {
         id: 1,
@@ -206,7 +209,8 @@ const birdsData = [
     ],
   },
   {
-    category: 'Певчие птицы',
+    categoryTitle: 'Певчие птицы',
+    categoryId: 4,
     categoryData: [
       {
         id: 1,
@@ -273,7 +277,8 @@ const birdsData = [
     ],
   },
   {
-    category: 'Хищные птицы',
+    categoryTitle: 'Хищные птицы',
+    categoryId: 5,
     categoryData: [
       {
         id: 1,
@@ -342,7 +347,8 @@ const birdsData = [
     ],
   },
   {
-    category: 'Морские птицы',
+    categoryTitle: 'Морские птицы',
+    categoryId: 6,
     categoryData: [
       {
         id: 1,
