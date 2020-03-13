@@ -22,6 +22,7 @@ class App extends Component {
         categoryId,
       })),
       chosenBird: null,
+      currentAnswerIsRight: null,
       rightAnswerWasGiven: false,
       theEnd: false,
     };
@@ -39,42 +40,23 @@ class App extends Component {
     return birdsArray[Math.floor(Math.random() * birdsArray.length)];
   }
 
-  handleAnswerChoice = (chosenItemId) => {
-    const { birdsOfCurrentCategory } = this.state;
-    const answerIdx = birdsOfCurrentCategory.findIndex(
-      ({ id }) => id === chosenItemId,
-    );
-    const birdData = birdsOfCurrentCategory[answerIdx];
+  handleAnswerChoice = ({ chosenBird, updatedBirdsData }) => {
+    const { questionBird } = this.state;
+    const isRightAnswer = chosenBird.id === questionBird.id;
 
-    if (birdData.wasChosen) {
-      return;
-    }
+    this.setState(({ score, pointsToGain }) => {
+      if (!updatedBirdsData) {
+        return { chosenBird };
+      }
 
-    this.setState(
-      ({ rightAnswerWasGiven, questionBird, score, pointsToGain }) => {
-        if (rightAnswerWasGiven) {
-          return { chosenBird: birdData };
-        }
-
-        const isRightAnswer = chosenItemId === questionBird.id;
-        const birdWithChosenFlag = {
-          ...birdData,
-          wasChosen: true,
-        };
-
-        return {
-          birdsOfCurrentCategory: [
-            ...birdsOfCurrentCategory.slice(0, answerIdx),
-            birdWithChosenFlag,
-            ...birdsOfCurrentCategory.slice(answerIdx + 1),
-          ],
-          chosenBird: birdData,
-          rightAnswerWasGiven: isRightAnswer,
-          score: isRightAnswer ? score + pointsToGain : score,
-          pointsToGain: pointsToGain - 1,
-        };
-      },
-    );
+      return {
+        chosenBird,
+        birdsOfCurrentCategory: updatedBirdsData,
+        rightAnswerWasGiven: isRightAnswer,
+        score: isRightAnswer ? score + pointsToGain : score,
+        pointsToGain: pointsToGain - 1,
+      };
+    });
   };
 
   goToNextLevel = () => {
