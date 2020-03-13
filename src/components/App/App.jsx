@@ -14,6 +14,7 @@ class App extends Component {
     super();
     this.state = {
       score: 0,
+      pointsToGain: 5,
       currentStep: 0,
       categories: birdsData.map(({ categoryTitle, categoryId }) => ({
         categoryTitle,
@@ -44,26 +45,35 @@ class App extends Component {
     );
     const birdData = birdsOfCurrentCategory[answerIdx];
 
-    this.setState(({ rightAnswerWasGiven, questionBird }) => {
-      if (rightAnswerWasGiven) {
-        return { chosenBird: birdData };
-      }
+    if (birdData.wasChosen) {
+      return;
+    }
 
-      const birdWithChosenFlag = {
-        ...birdData,
-        wasChosen: true,
-      };
+    this.setState(
+      ({ rightAnswerWasGiven, questionBird, score, pointsToGain }) => {
+        if (rightAnswerWasGiven) {
+          return { chosenBird: birdData };
+        }
 
-      return {
-        birdsOfCurrentCategory: [
-          ...birdsOfCurrentCategory.slice(0, answerIdx),
-          birdWithChosenFlag,
-          ...birdsOfCurrentCategory.slice(answerIdx + 1),
-        ],
-        chosenBird: birdData,
-        rightAnswerWasGiven: chosenItemId === questionBird.id,
-      };
-    });
+        const isRightAnswer = chosenItemId === questionBird.id;
+        const birdWithChosenFlag = {
+          ...birdData,
+          wasChosen: true,
+        };
+
+        return {
+          birdsOfCurrentCategory: [
+            ...birdsOfCurrentCategory.slice(0, answerIdx),
+            birdWithChosenFlag,
+            ...birdsOfCurrentCategory.slice(answerIdx + 1),
+          ],
+          chosenBird: birdData,
+          rightAnswerWasGiven: isRightAnswer,
+          score: isRightAnswer ? score + pointsToGain : score,
+          pointsToGain: pointsToGain - 1,
+        };
+      },
+    );
   };
 
   goToNextLevel = () => {
@@ -82,6 +92,7 @@ class App extends Component {
         questionBird,
         chosenBird: null,
         rightAnswerWasGiven: false,
+        pointsToGain: 5,
       };
     });
   };
