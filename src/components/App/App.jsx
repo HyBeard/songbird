@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import birdsData from '../../dataBase/birdsData';
 
@@ -9,10 +9,63 @@ import AnswersList from '../AnswersList';
 import AnswerCard from '../AnswerCard';
 import NextLvlBtn from '../NextLvlBtn';
 
-const App = () => {
-  const categories = birdsData.map(({ category }) => category);
-  const answerChoices = birdsData[0].categoryData.map((el) => el.name);
-  const example = birdsData[0].categoryData[0];
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      score: 0,
+      currentStep: 0,
+      categories: birdsData.map(({ categoryTitle, categoryId }) => ({
+        categoryTitle,
+        categoryId,
+      })),
+      chosenBird: null,
+      rightAnswerWasGiven: false,
+      theEnd: false,
+    };
+
+    const {
+      state,
+      state: { currentStep },
+    } = this;
+
+    state.birdsOfCurrentCategory = birdsData[currentStep].categoryData;
+    state.questionBird = App.takeRandomBird(state.birdsOfCurrentCategory);
+  }
+
+  static takeRandomBird(birdsArray) {
+    return birdsArray[Math.floor(Math.random() * birdsArray.length)];
+  }
+
+  handleAnswerChoice = (chosenItemId) => {
+    const { birdsOfCurrentCategory } = this.state;
+    const answerIdx = birdsOfCurrentCategory.findIndex(
+      ({ id }) => id === chosenItemId,
+    );
+    const birdData = birdsOfCurrentCategory[answerIdx];
+
+    this.setState(({ rightAnswerWasGiven, questionBird }) => {
+      if (rightAnswerWasGiven) {
+        return { chosenBird: birdData };
+      }
+
+      const birdWithChosenFlag = {
+        ...birdData,
+        wasChosen: true,
+      };
+
+      return {
+        birdsOfCurrentCategory: [
+          ...birdsOfCurrentCategory.slice(0, answerIdx),
+          birdWithChosenFlag,
+          ...birdsOfCurrentCategory.slice(answerIdx + 1),
+        ],
+        chosenBird: birdData,
+        rightAnswerWasGiven: chosenItemId === questionBird.id,
+      };
+    });
+  };
+
 
   return (
     <div className="wrap">
