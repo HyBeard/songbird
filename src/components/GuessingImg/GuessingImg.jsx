@@ -1,8 +1,13 @@
 import React from 'react';
 import guessingScreensaver from './guessingScreensaver.jpg';
 
-const GuessingImg = () => {
-  return <img src={guessingScreensaver} alt="guessing screensaver" />;
+const GuessingImg = ({ rightAnswerWasGiven, src }) => {
+  return (
+    <img
+      src={rightAnswerWasGiven ? src : guessingScreensaver}
+      alt="guessing bird"
+    />
+  );
 };
 
 export default GuessingImg;
