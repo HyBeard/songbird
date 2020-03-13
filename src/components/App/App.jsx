@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import birdsData from '../../dataBase/birdsData';
+import soundEffects from '../../utils/soundEffects';
 
 import Header from '../Header';
 import CategoryList from '../CategoryList';
@@ -9,6 +10,8 @@ import AnswersList from '../AnswersList';
 import AnswerCard from '../AnswerCard';
 import NextLvlBtn from '../NextLvlBtn';
 import CongratsPage from '../CongratsPage';
+
+const { correctAnswerSound, wrongAnswerSound } = soundEffects;
 
 class App extends Component {
   constructor() {
@@ -44,11 +47,18 @@ class App extends Component {
     const { questionBird } = this.state;
     const isRightAnswer = chosenBird.id === questionBird.id;
 
-    this.setState(({ score, pointsToGain }) => {
-      if (!updatedBirdsData) {
-        return { chosenBird };
-      }
+    if (!updatedBirdsData) {
+      this.setState({ chosenBird });
+      return;
+    }
 
+    if (isRightAnswer) {
+      correctAnswerSound.forcePlay();
+    } else {
+      wrongAnswerSound.forcePlay();
+    }
+
+    this.setState(({ score, pointsToGain }) => {
       return {
         chosenBird,
         birdsOfCurrentCategory: updatedBirdsData,

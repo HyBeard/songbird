@@ -24,7 +24,13 @@
       "plugin:react/recommended"
     ],
     "rules": {
-      "react/prop-types": 0
+      "react/prop-types": 0,
+      "no-unused-vars": [
+        "warn",
+        {
+          "ignoreRestSiblings": false
+        }
+      ]
     }
   },
   "browserslist": {
