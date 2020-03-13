@@ -1,10 +1,31 @@
 import React from 'react';
 
-const AnswersList = ({ mixinClass, answerChoices }) => {
+import cn from '../../utils/bemNaming';
+
+const AnswersList = ({
+  mixinClass,
+  answerChoicesData,
+  rightAnswerId,
+  onAnswerChoice,
+}) => {
   return (
     <ul className={`answers-list ${mixinClass}`}>
-      {answerChoices.map((answer) => {
-        return <li className="answers-list__item">{answer}</li>;
+      {answerChoicesData.map(({ name, id, wasChosen }) => {
+        const isRightAnswer = rightAnswerId === id;
+        const baseItemClass = cn('answers-list', 'item');
+        const finalItemClass = wasChosen
+          ? baseItemClass({ right: isRightAnswer, wrong: !isRightAnswer })
+          : baseItemClass();
+
+        return (
+          <li
+            className={finalItemClass}
+            key={id}
+            onClick={() => onAnswerChoice(id)}
+          >
+            {name}
+          </li>
+        );
       })}
     </ul>
   );
