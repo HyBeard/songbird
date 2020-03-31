@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import GuessingImg from '../GuessingImg';
 import AudioPlayer from '../AudioPlayer';
@@ -9,15 +10,20 @@ const QuestionCard = ({
   questionData: { audio, image, name },
 }) => {
   return (
-    <div className={`question-card ${mixinClass}`}>
-      <div className="question-card__img-box">
-        <GuessingImg rightAnswerWasGiven={rightAnswerWasGiven} src={image} />
-      </div>
-      <div className="question-card__info">
-        <h3 className="question-card__title">
-          {rightAnswerWasGiven ? name : '******'}
-        </h3>
-        <AudioPlayer src={audio} />
+    <div className={classNames(mixinClass, 'question-card card shadow')}>
+      <div className="row no-gutters">
+        <div className="question-card__img col">
+          <GuessingImg rightAnswerWasGiven={rightAnswerWasGiven} src={image} />
+        </div>
+        <div className="col">
+          <div className="card-body">
+            <h5 className="card-title text-secondary">
+              {rightAnswerWasGiven ? name : '******'}
+            </h5>
+            <hr />
+            <AudioPlayer src={audio} />
+          </div>
+        </div>
       </div>
     </div>
   );

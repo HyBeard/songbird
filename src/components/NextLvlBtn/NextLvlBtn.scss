@@ -1,0 +1,5 @@
+.next-btn {
+  &:disabled {
+    cursor: not-allowed;
+  }
+}

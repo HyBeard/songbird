@@ -3,7 +3,9 @@ import React from 'react';
 const Score = ({ mixinClass, score }) => {
   return (
     <div className={mixinClass}>
-      <h5 className="score"> Score: {score}</h5>
+      <span className="text-secondary font-italic score font-weight-bolder">
+        Score: {score}
+      </span>
     </div>
   );
 };

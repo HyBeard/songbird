@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ReactComponent as LogoIcon } from './bird.svg';
+import { ReactComponent as LogoIcon } from './default-monochrome-black.svg';
 
 const Logo = ({ mixinClass }) => {
   return (

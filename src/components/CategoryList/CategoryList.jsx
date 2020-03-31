@@ -1,20 +1,24 @@
 import React from 'react';
-
-import cn from '../../utils/bemNaming';
+import classNames from 'classnames';
 
 const CategoryList = ({ mixinClass, categories, currentStep }) => {
-  const currentCategory = categories[currentStep];
+  const currentCategory = categories[currentStep].categoryTitle;
 
   return (
-    <ul className={`category-list ${mixinClass}`}>
+    <ul
+      className={classNames(
+        mixinClass,
+        'list-group list-group-horizontal shadow',
+      )}
+    >
       {categories.map(({ categoryTitle, categoryId }) => {
-        const categoryClass = cn(
-          'category-list',
-          'item',
-        )({ active: categoryTitle === currentCategory });
+        const listItemClass = classNames(
+          'list-group-item list-group-item-primary flex-fill text-center',
+          { active: categoryTitle === currentCategory },
+        );
 
         return (
-          <li className={categoryClass} key={categoryId}>
+          <li className={listItemClass} key={categoryId}>
             {categoryTitle}
           </li>
         );
