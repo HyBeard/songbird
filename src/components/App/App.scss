@@ -1,6 +1,6 @@
 .quiz {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: calc(250px + 2rem) auto;
   grid-gap: 1rem;
   grid-template-areas:
     'category-list category-list'

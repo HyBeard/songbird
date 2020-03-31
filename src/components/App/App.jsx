@@ -103,7 +103,7 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div className="wrap">
+      <div className="container-xl">
         <Header score={score} />
         {theEnd ? (
           <CongratsPage score={score} />
@@ -119,13 +119,16 @@ class App extends Component {
               questionData={questionBird}
               rightAnswerWasGiven={rightAnswerWasGiven}
             />
-            <AnswersList
-              mixinClass="quiz__answers-list"
-              answerChoicesData={birdsOfCurrentCategory}
-              rightAnswerId={questionBird.id}
-              rightAnswerWasGiven={rightAnswerWasGiven}
-              onAnswerChoice={this.handleAnswerChoice}
-            />
+            <div>
+              <AnswersList
+                mixinClass="quiz__answers-list"
+                chosenBirdId={chosenBird ? chosenBird.id : null}
+                answerChoicesData={birdsOfCurrentCategory}
+                rightAnswerId={questionBird.id}
+                rightAnswerWasGiven={rightAnswerWasGiven}
+                onAnswerChoice={this.handleAnswerChoice}
+              />
+            </div>
             <AnswerCard mixinClass="quiz__answer-card" data={chosenBird} />
             <NextLvlBtn
               mixinClass="quiz__next-btn"

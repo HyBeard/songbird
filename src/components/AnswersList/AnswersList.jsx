@@ -1,9 +1,9 @@
 import React from 'react';
-
-import cn from '../../utils/bemNaming';
+import classNames from 'classnames';
 
 const AnswersList = ({
   mixinClass,
+  chosenBirdId,
   answerChoicesData,
   rightAnswerId,
   rightAnswerWasGiven,
@@ -34,25 +34,31 @@ const AnswersList = ({
   };
 
   return (
-    <ul className={`answers-list ${mixinClass}`}>
+    <div className={classNames(mixinClass, 'shadow list-group')}>
       {answerChoicesData.map(({ name, id, wasChosenEarly }) => {
         const isRightAnswer = rightAnswerId === id;
-        const baseItemClass = cn('answers-list', 'item');
+        const baseItemClass = classNames(
+          'answer list-group-item list-group-item-action d-flex align-items-center ',
+          { 'list-group-item-primary': chosenBirdId === id },
+        );
         const finalItemClass = wasChosenEarly
-          ? baseItemClass({ right: isRightAnswer, wrong: !isRightAnswer })
-          : baseItemClass();
+          ? classNames(baseItemClass, {
+              incorrect: !isRightAnswer,
+              correct: isRightAnswer,
+            })
+          : baseItemClass;
 
         return (
-          <li
+          <button
             className={finalItemClass}
             key={id}
             onClick={() => flagAndUpdate(id)}
           >
             {name}
-          </li>
+          </button>
         );
       })}
-    </ul>
+    </div>
   );
 };
 
