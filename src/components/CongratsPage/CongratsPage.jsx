@@ -1,4 +1,5 @@
 import React from 'react';
+import certificate from '../../assets/certificate.pdf';
 
 const CongratsPage = ({ score }) => {
   const MAX_SCORE = 30;
@@ -8,14 +9,26 @@ const CongratsPage = ({ score }) => {
 
   return (
     <div className="congrats-page">
-      <p className="congrats-page__congrats">Поздравляем!</p>
-      <p className="congrats-page__result">
+      <h2 className="congrats-page__congrats text-uppercase text-center">
+        Поздравляем!
+      </h2>
+      <p className="congrats-page__result text-center">
         Вы прошли викторину и набрали {score} из {MAX_SCORE} возможных баллов
       </p>
+      {score === MAX_SCORE && (
+        <button className="btn btn-primary d-block mb-2 ml-auto mr-auto shadow text-white">
+          <a
+            className="text-reset d-block"
+            href={certificate}
+            download="bird_expert_certificate.pdf"
+          >
+            Скачать сертификат
+          </a>
+        </button>
+      )}
       <button
-        type="button"
         onClick={refreshPage}
-        className="congrats-page__refresh"
+        className="btn btn-primary d-block mb-2 ml-auto mr-auto text-white shadow"
       >
         Попробовать еще раз!
       </button>

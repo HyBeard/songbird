@@ -4,7 +4,7 @@ import classNames from 'classnames';
 const NextLvlBtn = ({ mixinClass, rightAnswerWasGiven, onLevelChange }) => {
   const btnClass = classNames(
     mixinClass,
-    'text-white shadow btn btn-primary btn-lg next-btn',
+    'next-btn btn btn-primary btn-lg text-white shadow',
     {
       disabled: !rightAnswerWasGiven,
     },

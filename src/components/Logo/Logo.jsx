@@ -4,9 +4,10 @@ import { ReactComponent as LogoIcon } from './default-monochrome-black.svg';
 
 const Logo = ({ mixinClass }) => {
   return (
-    <div className={mixinClass}>
+    <h1 className={`${mixinClass} text-hide`}>
+      SongBird
       <LogoIcon className="logo" />
-    </div>
+    </h1>
   );
 };
 
