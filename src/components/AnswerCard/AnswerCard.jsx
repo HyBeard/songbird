@@ -11,15 +11,15 @@ const AnswerCard = ({ mixinClass, data }) => {
 
     return (
       <div className={cardClass}>
-        <div className="row row-cols-sm-2 row-cols-1  no-gutters">
-          <div className="answer-card__img-box col">
+        <div className="row no-gutters">
+          <div className="answer-card__img-box col-sm col-12">
             <img
               src={image}
               alt=""
               className="answer-card__img card-img border"
             />
           </div>
-          <div className="col">
+          <div className="col-sm col-12">
             <div className="card-body">
               <h5 className="card-title text-secondary">{name}</h5>
               <hr />

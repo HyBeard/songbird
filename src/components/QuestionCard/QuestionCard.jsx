@@ -11,11 +11,11 @@ const QuestionCard = ({
 }) => {
   return (
     <div className={classNames(mixinClass, 'question-card card shadow')}>
-      <div className="row row-cols-sm-2 row-cols-1 no-gutters">
-        <div className="question-card__img col">
+      <div className="row no-gutters">
+        <div className="question-card__img col-sm col-12">
           <GuessingImg rightAnswerWasGiven={rightAnswerWasGiven} src={image} />
         </div>
-        <div className="col">
+        <div className="col-sm col-12">
           <div className="card-body">
             <h5 className="card-title text-secondary">
               {rightAnswerWasGiven ? name : '******'}
