@@ -27,4 +27,16 @@
   &__next-btn {
     grid-area: next-btn;
   }
+
+  @media screen and (max-width: 576px) {
+    grid-template-columns: auto;
+    grid-col-gap: 0;
+    grid-row-gap: 0.5rem;
+    grid-template-areas:
+      'category-list'
+      'question-card'
+      'answers-list'
+      'answer-card'
+      'next-btn';
+  }
 }

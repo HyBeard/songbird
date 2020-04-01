@@ -5,6 +5,7 @@
   object-position: center;
 
   @media screen and (max-width: 576px) {
+    height: 250px;
     max-width: 100%;
   }
 }

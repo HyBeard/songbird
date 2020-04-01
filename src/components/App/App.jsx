@@ -103,7 +103,7 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div className="container-xl">
+      <div className="container-xl mt-2 mb-2">
         <Header score={score} />
         {theEnd ? (
           <CongratsPage score={score} />

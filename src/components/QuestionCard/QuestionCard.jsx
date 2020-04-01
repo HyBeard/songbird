@@ -11,7 +11,7 @@ const QuestionCard = ({
 }) => {
   return (
     <div className={classNames(mixinClass, 'question-card card shadow')}>
-      <div className="row no-gutters">
+      <div className="row row-cols-sm-2 row-cols-1 no-gutters">
         <div className="question-card__img col">
           <GuessingImg rightAnswerWasGiven={rightAnswerWasGiven} src={image} />
         </div>

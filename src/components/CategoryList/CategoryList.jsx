@@ -8,7 +8,7 @@ const CategoryList = ({ mixinClass, categories, currentStep }) => {
     <ul
       className={classNames(
         mixinClass,
-        'list-group list-group-horizontal shadow',
+        'list-group list-group-horizontal d-flex flex-md-nowrap flex-wrap shadow',
       )}
     >
       {categories.map(({ categoryTitle, categoryId }) => {

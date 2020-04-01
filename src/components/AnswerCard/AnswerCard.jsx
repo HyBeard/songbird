@@ -11,7 +11,7 @@ const AnswerCard = ({ mixinClass, data }) => {
 
     return (
       <div className={cardClass}>
-        <div className="row no-gutters">
+        <div className="row row-cols-sm-2 row-cols-1  no-gutters">
           <div className="answer-card__img-box col">
             <img
               src={image}
