@@ -1,0 +1,11 @@
+.guessing-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+
+  @media screen and (max-width: 576px) {
+    height: 250px;
+    max-width: 100%;
+  }
+}

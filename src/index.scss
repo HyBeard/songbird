@@ -1,0 +1,18 @@
+$theme-colors: (
+  primary: #f2c068,
+  secondary: #2d4586,
+);
+
+$body-bg: #f1f3f4;
+$card-bg: #f1f3f4;
+$list-group-bg: $card-bg;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/bootstrap';
+
+html,
+body,
+#root {
+  height: 100%;
+}
